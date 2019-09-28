@@ -2478,7 +2478,7 @@ java.util.Date fechat= new java.util.Date();
 
     private void Button_PoductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_PoductosActionPerformed
     String numero = JOptionPane.showInputDialog("Escribe tu contraseña");
-     if(numero.equals("Cliente1234")){
+     if(numero.equals("1010014122")){
         cargaProducto();}else{
          JOptionPane.showMessageDialog(null, "Clave incorrecta","Mensaje",JOptionPane.ERROR_MESSAGE);
      }

@@ -147,7 +147,7 @@ public class Init extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
 public void verificar (String valor){
-if(valor.equals("Cliente1234")){
+if(valor.equals("1010014122")){
     new Sistema().setVisible(true);
 }else{
      JOptionPane.showMessageDialog(null,"Clave Incorrecta");
