@@ -2477,7 +2477,11 @@ java.util.Date fechat= new java.util.Date();
     }//GEN-LAST:event_Button_VentasActionPerformed
 
     private void Button_PoductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_PoductosActionPerformed
-      cargaProducto();
+    String numero = JOptionPane.showInputDialog("Escribe tu contraseña");
+     if(numero.equals("Cliente1234")){
+        cargaProducto();}else{
+         JOptionPane.showMessageDialog(null, "Clave incorrecta","Mensaje",JOptionPane.ERROR_MESSAGE);
+     }
     }//GEN-LAST:event_Button_PoductosActionPerformed
 
     private void Button_Cat_DptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_Cat_DptActionPerformed
