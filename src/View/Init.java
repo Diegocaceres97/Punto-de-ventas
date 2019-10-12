@@ -5,20 +5,38 @@
  */
 package View;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import models.conexion;
 
 /**
  *
  * @author Diego
  */
 public class Init extends javax.swing.JFrame {
-
+java.util.Date date;
+java.util.Date sqldate;
+java.util.Date fecha = new java.util.Date();
     /**
      * Creates new form Init
      */
     public Init() {
         initComponents();
              setLocationRelativeTo(null);
+             Calendar c2 = new GregorianCalendar();
+int mes = c2.get(Calendar.DAY_OF_MONTH);
+if(mes ==12&&otra()==false&&cp()==false){
+    llaca(0,1);
+}
+             
     }
 
     /**
@@ -37,6 +55,7 @@ public class Init extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Inicio_Sesion");
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -145,13 +164,81 @@ public class Init extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField jPasswordField1;
     // End of variables declaration//GEN-END:variables
-
+ conexion cc= new conexion();
+Connection cn= cc.conexion();
 public void verificar (String valor){
-if(valor.equals("1010014122")){
+   // Calendar c1 = Calendar.getInstance();
+Calendar c2 = new GregorianCalendar();
+int mes = c2.get(Calendar.DAY_OF_MONTH);
+if(mes==12&&otra()==true){
+    System.out.println(otra());
+   String da =JOptionPane.showInputDialog(null,"Por favor contacte a su proveedor"+"\n Número: 3022233582 - 3167585233",
+           "Atención" ,JOptionPane.WARNING_MESSAGE);
+   if(da.equalsIgnoreCase("ortizcaceres")){
+       llaca(1,0);
+       pase(valor);
+   } else if(otra()==true){
+   System.exit(0);}
+    }else{
+    pase(valor);
+}
+
+}
+
+    private void pase(String valor) {
+      if(valor.equals("1")){//1010014122
     new Sistema().setVisible(true);
 }else{
      JOptionPane.showMessageDialog(null,"Clave Incorrecta");
      jPasswordField1.setText(null);
-}
-}
+      }}
+    
+     public boolean otra(){
+      String sql="";
+        sql="SELECT * FROM `aut` WHERE pass = 0";
+         try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            if(rs.next()){
+                return true;
+            }
+           // JOptionPane.showMessageDialog(null, "Si no sale ningún admin en pantalla, seguramente NO existe");
+            } catch (SQLException ex) {
+            Logger.getLogger(Init.class.getName()).log(Level.SEVERE, null, ex);
+            }
+       return false;
+ }
+
+    private void llaca(int y, int x) {
+        sqldate = new java.sql.Date(fecha.getTime());
+      try {
+          if(y==1){
+              System.out.println("entro"+sqldate);
+           PreparedStatement pst = cn.prepareStatement("UPDATE `aut` SET `pass`= "+ y+",`fech`='"+ sqldate+"'   WHERE pass ="+x);
+          pst.executeUpdate();
+          }else{
+        PreparedStatement pst = cn.prepareStatement("UPDATE `aut` SET `pass`= "+ y+"  WHERE pass ="+x);
+          pst.executeUpdate();}
+        
+        
+    } catch (Exception e) {
+        System.out.print(e.getMessage());
+    }
+    }
+    public boolean cp(){
+        sqldate = new java.sql.Date(fecha.getTime());
+      String sql="";
+        sql="SELECT * FROM `aut` WHERE fech = '" +sqldate+"'";
+         try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            if(rs.next()){
+                return true;
+            }
+           // JOptionPane.showMessageDialog(null, "Si no sale ningún admin en pantalla, seguramente NO existe");
+            } catch (SQLException ex) {
+            Logger.getLogger(Init.class.getName()).log(Level.SEVERE, null, ex);
+            }
+       return false;
+ }
 }

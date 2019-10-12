@@ -7,6 +7,7 @@ package ModelClass;
 
 
 import static View.Sistema.Table_Clientes1;
+import static View.Sistema.TextA;
 import static View.Sistema.coloc;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -192,7 +193,7 @@ public void buscar(String palabra, String ot){
             }
             if(palabra.equalsIgnoreCase("cantidad")){
             JOptionPane.showMessageDialog(null,y,"Productos Faltantes",JOptionPane.INFORMATION_MESSAGE);}else{
-                JOptionPane.showMessageDialog(null,y,"Productos vendidos",JOptionPane.INFORMATION_MESSAGE);
+               TextA.append(h+"\n");
             }
 //            else{
 //                JOptionPane.showMessageDialog(null,"No hay productos escasos","ERROR",JOptionPane.ERROR_MESSAGE);               

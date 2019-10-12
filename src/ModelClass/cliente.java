@@ -13,11 +13,16 @@ import java.awt.print.PageFormat;
 import java.awt.print.Printable;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
+import java.sql.Connection;
 import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 //import javax.swing.JTextField;
@@ -53,7 +58,7 @@ java.util.Date fecha = new java.util.Date();
        insert (sql,object);
        clientee = clientes();//Guarda la informacion obtenida para poder ver/manipular
   clientee.forEach(item ->{//Este objeto esta conteniendo todo los datos obtenidos de clientes
-      Nit = item.getNit();
+      Nit = item.getNit();//extrae
   });
        //System.out.println("esta ahora aca");
   sqld = "INSERT INTO reporte_clientes(NitC,saldo_actual,fecha_actual,ultimo_pago,fecha_pago)" + "values(?,?,?,?,?)";
@@ -189,4 +194,6 @@ public void imprimirrecibo(JPanel jpanel){
  public DefaultTableModel getModelodos() {
         return modelo2;//Creado especialmente para devolver el modelo para coger datos de la tabla
     }
+
+
 }
