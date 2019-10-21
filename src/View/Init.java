@@ -31,6 +31,7 @@ java.util.Date fecha = new java.util.Date();
     public Init() {
         initComponents();
              setLocationRelativeTo(null);
+             jPasswordField1.requestFocus();
              Calendar c2 = new GregorianCalendar();
 int mes = c2.get(Calendar.DAY_OF_MONTH);
 if(mes ==12&&otra()==false&&cp()==false){
@@ -52,6 +53,7 @@ if(mes ==12&&otra()==false&&cp()==false){
         jPasswordField1 = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Inicio_Sesion");
@@ -72,33 +74,45 @@ if(mes ==12&&otra()==false&&cp()==false){
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/ESGALOGO1.png"))); // NOI18N
 
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/x pc2.png"))); // NOI18N
+        jButton3.setToolTipText("Cerrar");
+        jButton3.setBorder(null);
+        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(93, 93, 93)
+                .addGap(24, 24, 24)
                 .addComponent(jLabel2)
-                .addContainerGap(98, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(123, 123, 123))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(168, 168, 168))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton3))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(96, 96, 96)
+                .addComponent(jLabel1))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(55, 55, 55)
+                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel2))
+                    .addComponent(jButton3))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -109,7 +123,9 @@ if(mes ==12&&otra()==false&&cp()==false){
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 2, Short.MAX_VALUE))
         );
 
         pack();
@@ -122,6 +138,10 @@ if(mes ==12&&otra()==false&&cp()==false){
        }
     
     }//GEN-LAST:event_jPasswordField1KeyPressed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+       System.exit(0);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -159,13 +179,14 @@ if(mes ==12&&otra()==false&&cp()==false){
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField jPasswordField1;
     // End of variables declaration//GEN-END:variables
  conexion cc= new conexion();
-Connection cn= cc.conexion();
+
 public void verificar (String valor){
    // Calendar c1 = Calendar.getInstance();
 Calendar c2 = new GregorianCalendar();
@@ -188,6 +209,7 @@ if(mes==12&&otra()==true){
     private void pase(String valor) {
       if(valor.equals("1")){//1010014122
     new Sistema().setVisible(true);
+    this.dispose();
 }else{
      JOptionPane.showMessageDialog(null,"Clave Incorrecta");
      jPasswordField1.setText(null);
@@ -196,9 +218,7 @@ if(mes==12&&otra()==true){
      public boolean otra(){
       String sql="";
         sql="SELECT * FROM `aut` WHERE pass = 0";
-         try {
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(sql);
+         try (Connection cn= cc.conexion();Statement st = cn.createStatement();ResultSet rs = st.executeQuery(sql);){          
             if(rs.next()){
                 return true;
             }
@@ -211,7 +231,7 @@ if(mes==12&&otra()==true){
 
     private void llaca(int y, int x) {
         sqldate = new java.sql.Date(fecha.getTime());
-      try {
+      try (Connection cn= cc.conexion();){
           if(y==1){
               System.out.println("entro"+sqldate);
            PreparedStatement pst = cn.prepareStatement("UPDATE `aut` SET `pass`= "+ y+",`fech`='"+ sqldate+"'   WHERE pass ="+x);
@@ -229,9 +249,8 @@ if(mes==12&&otra()==true){
         sqldate = new java.sql.Date(fecha.getTime());
       String sql="";
         sql="SELECT * FROM `aut` WHERE fech = '" +sqldate+"'";
-         try {
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(sql);
+         try (Connection cn= cc.conexion();Statement st = cn.createStatement();ResultSet rs = st.executeQuery(sql);){
+                       
             if(rs.next()){
                 return true;
             }
