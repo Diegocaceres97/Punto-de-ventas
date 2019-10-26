@@ -191,13 +191,13 @@ public void verificar (String valor){
    // Calendar c1 = Calendar.getInstance();
 Calendar c2 = new GregorianCalendar();
 int mes = c2.get(Calendar.DAY_OF_MONTH);
-if(mes==10){
+if(mes==24){
     JOptionPane.showMessageDialog(null,"Ya casi se te vence tu suscripcion, por favor contacte a sus"
             + " proveedores");
-}else if(mes==11){
+}else if(mes==25){
     JOptionPane.showMessageDialog(null,"Ya casi se te vence tu suscripcion, por favor contacte a sus"
             + " proveedores");
-}else if(mes==12&&otra()==true){
+}else if(mes==26&&otra()==true){
     System.out.println(otra());
    String da =JOptionPane.showInputDialog(null,"Por favor contacte a su proveedor"+"\n Número: 3022233582 - 3167585233",
            "Atención" ,JOptionPane.WARNING_MESSAGE);
@@ -213,7 +213,7 @@ if(mes==10){
 }
 
     private void pase(String valor) {
-      if(valor.equals("1")){//1010014122
+      if(valor.equals("1010014122")){//1010014122
     new Sistema().setVisible(true);
     this.dispose();
 }else{
