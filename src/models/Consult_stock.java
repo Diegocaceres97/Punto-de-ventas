@@ -63,6 +63,17 @@ public class Consult_stock extends conexion{
         } catch (SQLException ex) {
             System.err.println("Error"+ex);
         }
+        
+    }
+     public void updated(String sql){ //Metodo para actualizar los registros para sumar 1
+        final QueryRunner qr = new QueryRunner(true);
+        try {
+            qr.update(conexion(),sql);
+             conexion().close();
+        } catch (SQLException ex) {
+            System.err.println("Error"+ex);
+        }
+        
     }
     public void delete(String sql,int id){
         final QueryRunner qr = new QueryRunner(true); 

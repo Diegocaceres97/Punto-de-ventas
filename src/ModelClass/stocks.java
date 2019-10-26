@@ -132,13 +132,18 @@ if(Table_Clientes1.getValueAt(i, 4).toString().equals("0")){//Con este metodo el
 //  return modelo2;
 //   }
    public void UpdateCliente(int Nit,String ref, String des,int pre,int cant,String mar,String cat,int sab){
-      if(sab==0){
+       System.out.println("es: "+Nit);
+       if(sab==0){
        sql = "UPDATE stock  SET referencia=?,descripcion=?,precio_unidad=?,cantidad=?,marca=?,categoria=? where id_stock = "+Nit;
        Object[] st = new Object[]{ref,des,pre,cant,mar,cat};
-       update(sql,st);}else{
+       update(sql,st);}else if(sab==1){
            sql = "UPDATE stock  SET cantidad=? where id_stock = "+Nit;
        Object[] st = new Object[]{cant};
        update(sql,st);
+      }else if(sab == 2){
+          sql = "UPDATE stock set cantidad = cantidad+1 WHERE id_stock ="+Nit;
+       Object[] st = new Object[]{cant};
+       updated(sql);
       }
    }
    public void deleteClientes(int nit){
