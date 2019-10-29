@@ -3069,7 +3069,7 @@ jCheckBox1.setEnabled(true);
     }//GEN-LAST:event_Table_ReportesCLT1MouseClicked
 
     private void Button_GuardarCliente2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_GuardarCliente2ActionPerformed
-     String res = String.join(",", a);
+    String res = String.join(",", a);
         //System.out.println("nit cliente: "+man+" id productos :"+res+" cantidad: "+ cant+" total "+suma);
      if(!res.equalsIgnoreCase("")){  //Verifico por si es necesario mandar saldo a reporte clientes
      if(man>0&&!jCheckBox1.isSelected()){
